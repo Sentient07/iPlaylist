@@ -27,8 +27,14 @@ def create_new_path(dir_path, path_list):
 
 
 		if len(temp_path) > 0 :
-			new_path.append(temp_path[0])
+			len_list = []
+			for i in temp_path:
+				len_list.append(os.stat(i).st_size)
+			index = len_list.index(max(len_list))
+			new_path.append(temp_path[index])
 			temp_path = []
+			len_list = []
+			
 	return new_path
 
 def replace_path(tree, new_path, file_name):
